@@ -13,3 +13,5 @@ composer install
 `./start-server.sh` then visit [http://localhost:8080/about](http://localhost:8080/about)
 
 ## heroku demo url
+
+[https://slim3-view-example.herokuapp.com/](https://slim3-view-example.herokuapp.com/)
