@@ -1,0 +1,29 @@
+<p>let's have a look at the source files</p>
+
+
+<?php
+$hdr = '';
+$body = '';
+foreach ($src as $title => $code) {
+    $id = md5($title);
+    if ($title === 'app.php') {
+        $class = 'active';
+        $hdr .= '<li class="active"><a data-toggle="tab" href="#' . $id . '">' . $title . '</a></li>';
+    } else {
+        $class = '';
+        $hdr .= '<li><a data-toggle="tab" href="#' . $id . '">' . $title . '</a></li>';
+    }
+
+    $body .= '<div id="' . $id . '" class="tab-pane fade in ' . $class . '"><pre class="brush: php">' . $code . '</pre></div>';
+}
+?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <ul class="nav nav-pills nav-inverse"><?php echo $hdr ?></ul>
+    </div>
+    <div class="panel-body">
+        <div class="tab-content">
+            <?php echo $body ?>
+        </div>
+    </div>
+</div>

@@ -3,25 +3,37 @@
 
 <p>This example app has a very simple structure as shown below</p>
 
-<div class="panel panel-info">
+<div class="panel panel-default">
     <div class="panel-heading">
         Folder Structure
     </div>
     <div class="panel-body">
         <pre>
-app
-├── app.php
-└── themes
-    └── default
-        ├── layouts
-        │   └── default.phtml
-        └── views
-            ├── pages
-            │   ├── about.phtml
-            │   └── homepage.phtml
-            └── shared
-                ├── header.phtml
-                └── nav.phtml
+├── app
+│   ├── app.php
+│   └── themes
+│       ├── alternative
+│       │   └── views
+│       │       ├── pages
+│       │       │   ├── about.phtml
+│       │       │   └── homepage.phtml
+│       │       └── shared
+│       │           ├── header.phtml
+│       │           └── nav.phtml
+│       └── default
+│           ├── layouts
+│           │   └── default.phtml
+│           └── views
+│               ├── pages
+│               │   ├── about.phtml
+│               │   └── homepage.phtml
+│               └── shared
+│                   ├── header.phtml
+│                   └── nav.phtml
+└── public
+    └── index.php
         </pre>
     </div>
 </div>
+
+<p>Fun fact: in alternative theme, there's no layout, so the system will automagically fall back to default/layouts/default.phtml</p>
