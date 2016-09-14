@@ -1,5 +1,5 @@
-<div class="container">
-    <nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1">
@@ -25,8 +25,11 @@
                 ?>
             </ul>
         </div>
-    </nav>
-    <header class="clearfix">
+    </div>
+</nav>
+<?php if ($showTitle): ?>
+    <header class="clearfix container">
         <h3 class="page-heading"><?php echo $pageTitle ?></h3>
     </header>
+<?php endif; ?>
 </div>

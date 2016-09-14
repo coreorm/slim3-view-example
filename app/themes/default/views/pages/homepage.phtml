@@ -9,31 +9,32 @@
     </div>
     <div class="panel-body">
         <pre>
-├── app
-│   ├── app.php
-│   └── themes
-│       ├── alternative
-│       │   └── views
-│       │       ├── pages
-│       │       │   ├── about.phtml
-│       │       │   └── homepage.phtml
-│       │       └── shared
-│       │           ├── header.phtml
-│       │           └── nav.phtml
-│       └── default
-│           ├── layouts
-│           │   └── default.phtml
-│           └── views
-│               ├── pages
-│               │   ├── about.phtml
-│               │   └── homepage.phtml
-│               └── shared
-│                   ├── header.phtml
-│                   └── nav.phtml
-└── public
-    └── index.php
+app
+├── app.php
+├── config.json
+└── themes
+    ├── alternative
+    │   ├── layouts
+    │   │   └── page.phtml
+    │   └── views
+    │       └── pages
+    │           └── about.phtml
+    └── default
+        ├── layouts
+        │   └── default.phtml
+        └── views
+            ├── bits
+            │   ├── header.phtml
+            │   └── nav.phtml
+            └── pages
+                ├── about.phtml
+                └── homepage.phtml
         </pre>
     </div>
 </div>
 
-<p>Fun fact: in alternative theme, there's no layout, so the system will automagically fall back to default/layouts/default.phtml</p>
+<ul>
+    <li>config.json provides the data to be set on the theme, including theme specific settings</li>
+    <li>app.php shares all templates from default globally, so when `alternative` theme doesn't have a view template, it'll just borrow from default; when it does, it uses its own template.</li>
+    <li>Click the navigation links to browse the alternative themes</li>
+</ul>

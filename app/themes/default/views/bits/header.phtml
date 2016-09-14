@@ -1,0 +1,15 @@
+<head>
+    <title><?php echo $pageTitle; ?></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php
+    foreach ($styles as $css) {
+        echo '<link rel="stylesheet" href="' . $css . '">';
+    }
+    foreach ($scripts as $script) {
+        echo '<script type="text/javascript" src="' . $script . '"></script>';
+    }
+    ?>
+    <style><?php echo $inlineStyle ?></style>
+    <script type="text/javascript"><?php echo $inlineScript ?></script>
+</head>

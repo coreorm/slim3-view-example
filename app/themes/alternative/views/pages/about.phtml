@@ -1,2 +1,21 @@
+
 <?php
-include __DIR__ . '/../../../default/views/pages/about.phtml';
+$hdr = '';
+$body = '';
+foreach ($src as $title => $code) {
+    $id = md5($title);
+    if ($title === 'app.php') {
+        $class = 'active';
+        $hdr .= '<li class="active"><a data-toggle="tab" href="#' . $id . '">' . $title . '</a></li>';
+    } else {
+        $class = '';
+        $hdr .= '<li><a data-toggle="tab" href="#' . $id . '">' . $title . '</a></li>';
+    }
+
+    $body .= '<div id="' . $id . '" class="tab-pane fade in ' . $class . '"><pre class="brush: php">' . $code . '</pre></div>';
+}
+?>
+<ul class="nav nav-tabs"><?php echo $hdr ?></ul>
+<div class="tab-content">
+    <?php echo $body ?>
+</div>

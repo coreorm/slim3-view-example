@@ -4,39 +4,20 @@ use Coreorm\Slim3\Theme;
 
 $app = new App(['settings' => ['displayErrorDetails' => true]]);
 
+$conf = json_decode(file_get_contents(__DIR__ . '/config.json'), true);
+
 $theme = Theme::instance(__DIR__ . '/themes');
+$theme->setLayout('page');
+foreach ($conf as $k => $v) {
+    $theme->setData($k, $v);
+}
 
-// set default layout & default title & navigation
-$nav = [
-    [
-        'icon' => 'glyphicon glyphicon-home',
-        'class' => '',
-        'label' => 'home',
-        'url' => '/'
-    ],
-    [
-        'icon' => 'glyphicon glyphicon-info-sign',
-        'class' => '',
-        'label' => 'about',
-        'url' => '/about'
-    ],
-    [
-        'icon' => 'glyphicon glyphicon-home',
-        'class' => '',
-        'label' => 'home (alternative)',
-        'url' => '/alt'
-    ],
-    [
-        'icon' => 'glyphicon glyphicon-info-sign',
-        'class' => '',
-        'label' => 'about (alternative)',
-        'url' => '/alt/about'
-    ]
-];
-
-$theme->setLayout('page')
-    ->setData('pageTitle', 'Slim3 View Example')
-    ->setData('nav', $nav);
+// now set shared resources (notice the theme is omitted as it defaults to 'default')
+$theme->share('layouts/default')
+    ->share('views/bits/header')
+    ->share('views/bits/nav')
+    ->share('views/pages/about')
+    ->share('views/pages/homepage');
 
 // default pages
 $pages = [];
@@ -44,42 +25,31 @@ $pages = [];
 // current path
 $theme->setData('currentURL', $_SERVER['REQUEST_URI']);
 
+// read src
 $src = [];
-/**
- * quick function for reading src
- * @param $file
- * @param $key
- */
-$reader = function ($file, $key) use ($theme, &$src) {
+foreach ($conf['reader'] as $pc) {
+    $key = $pc[1];
+    $file = $pc[0];
     $src[$key] = '# FILE: ' . $file . PHP_EOL . PHP_EOL . htmlentities(file_get_contents(__DIR__ . $file));
     $theme->setData('src', $src);
+}
+
+$pages['/'] = function ($request, $response, $args) use ($theme) {
+    $theme->setData('pageTitle', $theme->getData('pageTitle') . ' > Homepage')
+        ->render($response, 'pages/homepage', [], true);
 };
 
-$reader('/app.php', 'app.php');
-$reader('/themes/default/layouts/default.phtml', 'layout/default');
-$reader('/themes/default/views/pages/homepage.phtml', 'homepage');
-$reader('/themes/default/views/pages/about.phtml', 'about');
-$reader('/themes/alternative/views/pages/homepage.phtml', 'homepage (alternative)');
-$reader('/themes/alternative/views/pages/about.phtml', 'about (alternative)');
-
-$pages['/'] = function ($request, $response, $args) use ($theme, $nav) {
-    $theme->setData('nav', $nav)
-        ->setData('pageTitle', $theme->getData('pageTitle') . ' > Homepage')
-        ->render($response, 'pages/homepage');
+$pages['/about'] = function ($request, $response, $args) use ($theme) {
+    $theme->setData('pageTitle', $theme->getData('pageTitle') . ' > About')
+        ->render($response, 'pages/about', [], true);
 };
 
-$pages['/about'] = function ($request, $response, $args) use ($theme, $nav) {
-    $theme->setData('nav', $nav)
-        ->setData('pageTitle', $theme->getData('pageTitle') . ' > About')
-        ->render($response, 'pages/about');
-};
-
-$pages['/alt'] = function ($request, $response, $args) use ($theme, $nav, $pages) {
+$pages['/alt'] = function ($request, $response, $args) use ($theme, $pages) {
     $theme->setTheme('alternative');
     $pages['/']($request, $response, $args);
 };
 
-$pages['/alt/about'] = function ($request, $response, $args) use ($theme, $nav, $pages) {
+$pages['/alt/about'] = function ($request, $response, $args) use ($theme, $pages) {
     $theme->setTheme('alternative');
     $pages['/about']($request, $response, $args);
 };

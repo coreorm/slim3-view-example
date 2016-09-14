@@ -1,0 +1,91 @@
+{
+  "pageTitle": "slim 3 view example app",
+  "nav": [
+    {
+      "icon": "glyphicon glyphicon-home",
+      "class": "",
+      "label": "home",
+      "url": "/"
+    },
+    {
+      "icon": "glyphicon glyphicon-info-sign",
+      "class": "",
+      "label": "about",
+      "url": "/about"
+    },
+    {
+      "icon": "glyphicon glyphicon-home",
+      "class": "",
+      "label": "home (alternative)",
+      "url": "/alt"
+    },
+    {
+      "icon": "glyphicon glyphicon-info-sign",
+      "class": "",
+      "label": "about (alternative)",
+      "url": "/alt/about"
+    }
+  ],
+  "themes": {
+    "default": {
+      "theme": "default",
+      "scripts": [
+        "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js",
+        "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPhp.min.js"
+      ],
+      "styles": [
+        "https://bootswatch.com/paper/bootstrap.min.css",
+        "https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.min.css",
+        "https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shThemeEclipse.min.css"
+      ],
+      "inlineStyle": "body {margin: 80px 0;}",
+      "inlineScript": "SyntaxHighlighter.all()",
+      "showTitle": true
+    },
+    "alternative": {
+      "theme": "default",
+      "scripts": [
+        "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js",
+        "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushPhp.min.js"
+      ],
+      "styles": [
+        "https://bootswatch.com/slate/bootstrap.min.css",
+        "https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.min.css",
+        "https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shThemeRDark.min.css"
+      ],
+      "inlineStyle": "body {margin: 80px 0;}",
+      "inlineScript": "SyntaxHighlighter.all()",
+      "showTitle": false
+    }
+  },
+  "reader": [
+    [
+      "/app.php",
+      "app.php"
+    ],
+    [
+      "/themes/default/layouts/default.phtml",
+      "layout"
+    ],
+    [
+      "/themes/alternative/layouts/page.phtml",
+      "layout (alt)"
+    ],
+    [
+      "/themes/default/views/pages/homepage.phtml",
+      "homepage"
+    ],
+    [
+      "/themes/default/views/pages/about.phtml",
+      "about"
+    ],
+    [
+      "/themes/alternative/views/pages/about.phtml",
+      "about (alt)"
+    ]
+  ]
+}
